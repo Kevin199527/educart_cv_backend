@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "medicamentos",
+  "info": {
+    "singularName": "medicamento",
+    "pluralName": "medicamentos",
+    "displayName": "Medicamento",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "nome": {
+      "type": "string"
+    },
+    "descricao": {
+      "type": "customField",
+      "options": {
+        "preset": "custom"
+      },
+      "customField": "plugin::ckeditor5.CKEditor"
+    }
+  }
+}
