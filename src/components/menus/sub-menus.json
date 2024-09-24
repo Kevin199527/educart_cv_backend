@@ -12,6 +12,10 @@
     },
     "url": {
       "type": "string"
+    },
+    "icons": {
+      "type": "customField",
+      "customField": "plugin::react-icons.icon"
     }
   }
 }

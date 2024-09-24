@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_menus_icons",
+  "info": {
+    "displayName": "icons",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "icon": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "nome": {
+      "type": "string"
+    }
+  }
+}

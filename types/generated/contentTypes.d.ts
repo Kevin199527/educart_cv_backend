@@ -844,8 +844,18 @@ export interface ApiMedicamentoMedicamento extends Schema.CollectionType {
   options: {
     draftAndPublish: true;
   };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
   attributes: {
-    nome: Attribute.String;
+    nome: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     descricao: Attribute.RichText &
       Attribute.CustomField<
         'plugin::ckeditor5.CKEditor',
@@ -868,6 +878,12 @@ export interface ApiMedicamentoMedicamento extends Schema.CollectionType {
       'admin::user'
     > &
       Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::medicamento.medicamento',
+      'oneToMany',
+      'api::medicamento.medicamento'
+    >;
+    locale: Attribute.String;
   };
 }
 
@@ -882,16 +898,96 @@ export interface ApiMenuMenu extends Schema.CollectionType {
   options: {
     draftAndPublish: true;
   };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
   attributes: {
-    titulo: Attribute.String;
-    url: Attribute.String;
-    submenu: Attribute.Component<'menus.sub-menus', true>;
+    titulo: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    url: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    submenu: Attribute.Component<'menus.sub-menus', true> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    ordem: Attribute.Integer &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    icons: Attribute.String &
+      Attribute.CustomField<'plugin::react-icons.icon'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::menu.menu', 'oneToOne', 'admin::user'> &
       Attribute.Private;
     updatedBy: Attribute.Relation<'api::menu.menu', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::menu.menu',
+      'oneToMany',
+      'api::menu.menu'
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface ApiSiteInfoSiteInfo extends Schema.SingleType {
+  collectionName: 'site_infos';
+  info: {
+    singularName: 'site-info';
+    pluralName: 'site-infos';
+    displayName: 'Site Info';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    nome_site: Attribute.String;
+    logo: Attribute.Media<'images', true>;
+    descricao: Attribute.RichText &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'custom';
+        }
+      >;
+    icons: Attribute.Component<'menus.icons', true>;
+    url: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::site-info.site-info',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::site-info.site-info',
+      'oneToOne',
+      'admin::user'
+    > &
       Attribute.Private;
   };
 }
@@ -917,6 +1013,7 @@ declare module '@strapi/types' {
       'plugin::react-icons.iconlibrary': PluginReactIconsIconlibrary;
       'api::medicamento.medicamento': ApiMedicamentoMedicamento;
       'api::menu.menu': ApiMenuMenu;
+      'api::site-info.site-info': ApiSiteInfoSiteInfo;
     }
   }
 }
