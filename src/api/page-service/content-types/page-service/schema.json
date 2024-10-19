@@ -1,10 +1,10 @@
 {
-  "kind": "collectionType",
-  "collectionName": "medicamentos",
+  "kind": "singleType",
+  "collectionName": "page_services",
   "info": {
-    "singularName": "medicamento",
-    "pluralName": "medicamentos",
-    "displayName": "Medicamento",
+    "singularName": "page-service",
+    "pluralName": "page-services",
+    "displayName": "PageDetalheService",
     "description": ""
   },
   "options": {
@@ -16,7 +16,7 @@
     }
   },
   "attributes": {
-    "nome": {
+    "titulo": {
       "type": "string",
       "pluginOptions": {
         "i18n": {
@@ -25,11 +25,12 @@
       }
     },
     "descricao": {
-      "type": "customField",
-      "options": {
-        "preset": "custom"
-      },
-      "customField": "plugin::ckeditor5.CKEditor"
+      "type": "text",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     }
   }
 }
