@@ -962,6 +962,36 @@ export interface ApiNoticiaNoticia extends Schema.CollectionType {
   };
 }
 
+export interface ApiNovidadeNovidade extends Schema.CollectionType {
+  collectionName: 'novidades';
+  info: {
+    singularName: 'novidade';
+    pluralName: 'novidades';
+    displayName: 'Novidade';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Texte: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::novidade.novidade',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::novidade.novidade',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiPageServicePageService extends Schema.SingleType {
   collectionName: 'page_services';
   info: {
@@ -1148,6 +1178,7 @@ declare module '@strapi/types' {
       'plugin::react-icons.iconlibrary': PluginReactIconsIconlibrary;
       'api::menu.menu': ApiMenuMenu;
       'api::noticia.noticia': ApiNoticiaNoticia;
+      'api::novidade.novidade': ApiNovidadeNovidade;
       'api::page-service.page-service': ApiPageServicePageService;
       'api::servico.servico': ApiServicoServico;
       'api::site-info.site-info': ApiSiteInfoSiteInfo;
